@@ -1,0 +1,62 @@
+<%- include('partials/_header') %>
+
+<div class="container mt-5">
+    <div class="row ">
+        <div class="col-md-7">
+            <h2>Citas Próximas</h2>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>N° cita</th>
+                        <th>Nombre</th>
+                        <th>Hora</th>
+                        <th>Teléfono</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data) { %>
+                        <% for (var i = 0; i< data.length; i++) { %>
+                           <tr>
+                            <td><%= (i+1) %></td>
+                            <td><%= data[i].nombre %></td>
+                            <td><%= data[i].hora %></td>
+                            <td><%= data[i].telefono %></td>
+                            <td>
+                                <a href="/delete/<%= data[i].idcita %>" class="btn btn-danger">Eliminar</a>
+                                <a href="/update/<%= data[i].idcita %>" class="btn btn-info">Editar</a>
+                            </td>
+                           </tr> 
+                            <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-5">
+           <div class="card">
+                <div class="card-body">
+                    <h2>Agenda tu cita</h2>
+                    <form action="/add" method="post">
+
+                        <div class="form-group mb-3">
+                            <input type="text" name="nombre" placeholder="Nombre" class="form-control">
+                        </div>  
+                        
+                        <div class="form-group mb-3">
+                            <input type="text" name="hora" placeholder="Horario" class="form-control">
+                        </div>
+                    
+                        <div class="form-group mb-3">
+                            <input type="text" name="telefono" placeholder="Teléfono" class="form-control">
+                        </div>
+                    
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        
+                    </form>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/_footer') %>
